@@ -1,0 +1,74 @@
+{% extends 'myapplication/base.html' %}
+{% block title %}Post{% endblock title %}
+{% block content %}
+<h1>All POSTS</h1>
+<hr>
+<table>
+    <thead>
+        <tr>
+            <th>Post Title</th>
+            <th>Category</th>
+            <th>Publish date</th>
+            <th>USER</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in data1 %}
+        <tr>
+            <td>{{item.post_title}}</td>
+            <td>{{item.post_cat}}</td>
+            <td>{{item.post_publish_date}}</td>
+            <td>{{item.user}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<h1>Post published by user 'sonam'</h1>
+<hr>
+<table>
+    <thead>
+        <tr>
+            <th>Post Title</th>
+            <th>Category</th>
+            <th>Publish date</th>
+            <th>USER</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in data2 %}
+        <tr>
+            <td>{{item.post_title}}</td>
+            <td>{{item.post_cat}}</td>
+            <td>{{item.post_publish_date}}</td>
+            <td>{{item.user}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+<h1>Filtered by post publish date</h1>
+<hr>
+<table>
+    <thead>
+        <tr>
+            <th>Post Title</th>
+            <th>Category</th>
+            <th>Publish date</th>
+            <th>USER</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in data3 %}
+        <tr>
+            <td>{{item.post_title}}</td>
+            <td>{{item.post_cat}}</td>
+            <td>{{item.post_publish_date}}</td>
+            <td>{{item.user}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock content %}

@@ -1,0 +1,17 @@
+{% extends 'crud/base.html' %}
+
+{% block form %}
+<div class="alert alert-primary text-center"><h5>Add New Student</h5></div>
+<form action="{% url 'registration' %}" method="POST">
+    {% csrf_token %}
+    {{form.as_p}}
+    <div class="text-end">
+        <button type="submit" class="btn btn-outline-danger">Add New Student</button>
+    </div>
+</form>
+{% endblock form %}
+
+{% block table %}
+{% include 'crud/table.html' %}
+
+{% endblock table %}

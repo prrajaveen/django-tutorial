@@ -1,0 +1,127 @@
+{% extends 'myapplication/base.html' %}
+{% load static %}
+{% block style %}
+<style>
+    .contact-form {
+        background-color: rgb(83, 81, 81);
+    }
+
+    textarea {
+        width: 100%;
+    }
+
+    .web span {
+        line-height: 0px;
+    }
+</style>
+{% endblock style %}
+
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <div class="text-center text-warning mb-1">
+        <h1 class="text-warning">Contact Page</h1>
+    </div>
+    <hr class="border-bottom border-5  border-warning mb-5">
+    <div class="row">
+        <div class="col-4 d-flex justify-content-center align-items-center flex-column web border border-light border-5 px-0">
+            <img class="img-thumbnail" style="height: 300px; width: 300px;"
+                src="{% static 'myapplication/images/1.jpg' %}" alt="">
+            <div class="text-center">
+                <h1 class="title text-warning mt-2">Web Designer Group</h1>
+                <p class="fw-bolder text-light font-monospace "><span class="text-warning web  fs-1">L</span>orem ipsum
+                    dolor, sit amet consectetur adipisicing elit. Porro, aspernatur consectetur aperiam repudiandae
+                    nulla sunt itaque dolore sequi mollitia quas ex qui. Possimus accusamus dolorem praesentium adipisci
+                    id quae illo.</p>
+                <a class="btn btn-outline-warning fs-5" href="">Clic here for more info</a>
+            </div>
+        </div>
+        <div class="col-4 d-flex justify-content-center align-items-center flex-column web">
+            <img class="img-thumbnail" style="height: 300px; width: 300px;"
+                src="{% static 'myapplication/images/2.jpg' %}" alt="">
+            <div class="text-center">
+                <h1 class="title text-warning mt-2">Web Designer Group</h1>
+                <p class="fw-bolder text-light font-monospace "><span class="text-warning fs-1 ">L</span>orem ipsum
+                    dolor, sit amet consectetur adipisicing elit. Porro, aspernatur consectetur aperiam repudiandae
+                    nulla sunt itaque dolore sequi mollitia quas ex qui. Possimus accusamus dolorem praesentium adipisci
+                    id quae illo.</p>
+                <a class="btn btn-outline-warning fs-5" href="">Clic here for more info</a>
+            </div>
+        </div>
+        <div class="col-4 d-flex justify-content-center align-items-center flex-column web">
+            <img class="img-thumbnail" style="height: 300px; width: 300px;"
+                src="{% static 'myapplication/images/3.jpg' %}" alt="">
+            <div class="text-center">
+                <h1 class="title text-warning mt-2">Web Designer Group</h1>
+                <p class="fw-bolder text-light font-monospace  "><span class="text-warning fs-1">L</span>orem ipsum
+                    dolor, sit amet consectetur adipisicing elit. Porro, aspernatur consectetur aperiam repudiandae
+                    nulla sunt itaque dolore sequi mollitia quas ex qui. Possimus accusamus dolorem praesentium adipisci
+                    id quae illo.</p>
+                <a class="btn btn-outline-warning" href="">Clic here for more info</a>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="bg-dark mt-5 p-5 shadow rounded position-relative">
+        <div class="position-absolute top-0 end-0 text-light">
+            {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-success">
+                {{message}}
+            </div>
+            {% endfor %}
+            {% endif %}
+        </div>
+        <div class="d-flex justify-content-center align-items-center mb-2">
+            <hr class="border border-warning w-25 border-5">
+            <span class="mx-4 fs-2 fw-bolder text-warning">Contact Us</span>
+            <hr class="border border-5 border-warning w-25">
+        </div>
+        <form action="{% url 'contact' %}" method="POST">
+            {% csrf_token %}
+            <div class="row text-light">
+                <div class="col-6">
+                    <div>
+                        {{form.firstname.label_tag}}
+                        {{form.firstname}}
+                        {{form.firstname.errors}}
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div>
+                        {{form.lastname.label_tag}}
+                        {{form.lastname}}
+                        {{form.lastname.errors}}
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div>
+                        {{form.emailaddress.label_tag}}
+                        {{form.emailaddress}}
+                        {{form.emailaddress.errors}}
+                    </div>
+
+                </div>
+                <div class="col-12">
+                    <div class="">
+                        {{form.message.label_tag}}
+                        {{form.message}}
+                        {{form.message.errors}}
+                    </div>
+                </div>
+                <div class="col-12 text-end mt-2">
+                    <button class="btn btn-outline-warning fw-bolder">Contact Us</button>
+                </div>
+
+            </div>
+        </form>
+    </div>
+
+
+
+</div>
+
+{% endblock content %}

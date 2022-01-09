@@ -1,0 +1,292 @@
+{% extends 'myapplication/base.html' %}
+{% block style %}
+<style>
+    .blog-box {
+        background-color: rgb(83, 81, 81);
+
+    }
+
+    ul {
+        list-style: none;
+    }
+
+    .item {
+        display: flex;
+        justify-content: space-between;
+        box-sizing: border-box;
+        margin-bottom: 50px;
+    }
+
+    .addpost {
+        cursor: pointer;
+    }
+
+    .modal-body input:focus {
+        background-color: rgb(83, 81, 81);
+
+    }
+
+    .modal-body textarea:focus {
+        background-color: rgb(83, 81, 81);
+    }
+
+    td a {
+        font-size: 1.2rem;
+        font-weight: 900;
+    }
+    .delete-btn{
+        background:none;
+        outline: none;
+        border: none;
+    }
+</style>
+{% endblock style %}
+
+{% block msg %}
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+    <strong>{{message.tags}}</strong> {{message}}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}
+{% endif %}
+
+{% endblock msg %}
+
+{% block content %}
+
+<div class="row mt-5">
+    <div class="col-sm-4 p-0  blog-box shadow rounded text-white">
+        <div class=" mt-4 px-4 d-flex justify-content-between">
+            <h5>Profile</h5>
+
+            <h5 class=""> <span class="text-warning">Welcome</span> {{request.user.first_name}}</h5>
+        </div>
+        <hr class="text-white border border-warning border-3">
+        <ul class="px-4">
+            <li class='item'>
+                <span class="text-warning fw-bolder">Profile</span>
+                <div>
+                    <a class="text-white text-decoration-none" href=""><span> <i class="bi bi-pencil-square"></span></i>
+                        <span>{{request.user}}</span></a>
+                </div>
+            </li>
+            <hr>
+            <li class='item'>
+                <span class="text-warning fw-bolder">Name</span>
+                <div>
+                    <a class="text-white text-decoration-none" href=""><span> <i class="bi bi-pencil-square"></span></i>
+                        <span>{{request.user.first_name}} {{request.user.last_name}}</span></a>
+                </div>
+            </li>
+            <hr>
+            <li class='item'>
+                <span class="text-warning fw-bolder">Email</span>
+                <div>
+                    <a class="text-white text-decoration-none" href=""><span> <i class="bi bi-pencil-square"></span></i>
+                        <span>{{request.user.email}}</span></a>
+                </div>
+            </li>
+            <hr>
+            <li class='item'>
+                <span class="text-warning fw-bolder">Username</span>
+                <div>
+                    <a class="text-white text-decoration-none" href=""><span> <i class="bi bi-pencil-square"></span></i>
+                        <span>{{request.user}}</span></a>
+                </div>
+            </li>
+            <hr>
+            <li class='item'>
+                <span class="text-warning fw-bolder">Password</span>
+                <div>
+                    <a class="text-white text-decoration-none" href=""><span> <i class="bi bi-pencil-square"></span></i>
+                        <span>Edit</span></a>
+                </div>
+            </li>
+
+            <div class="text-end">
+                <a href="{% url 'logout' %}" class="btn btn-warning">Logout</a>
+            </div>
+        </ul>
+    </div>
+    <div class="col-sm-8 text-white px-3">
+        <div class="dashboard blog-box rounded">
+            <div class="navbar px-4 ">
+                <div class="navbar-brand">dashboard</div>
+                <div class="ml-auto">Your ip <span class="text-warning">{{ip}}</span></div>
+                <button class="position-relative btn btn-warning badge">login count
+                    <span class="position-absolute bg-danger badge rounded-pill top-0 start-100  translate-middle" >{{logincount}}</span>
+                </button>
+                <div data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo"> <span
+                        class="text-warning"><i class="bi bi-plus-square"></i></span> Add post</div>
+            </div>
+        </div>
+
+        <div class="table mt-4 blog-box shadow px-3 py-3">
+            <table class="table">
+                <thead class="text-light text-uppercase">
+                    <tr>
+                        <th scope="col">id</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Blog Post</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody class="text-light">
+                    {% for item in post %}
+                    <tr>
+                        <th class="text-warning" scope="row">{{forloop.counter}}</th>
+                        <td>{{item.title}}</td>
+                        <td>{{item.desc}}</td>
+                        <td>
+                            <a id='{{item.id}}' onclick="edit(this)" data-bs-toggle="modal"
+                                data-bs-target="#raja{{item.id}}" class="text-warning me-3 edit text-decoration-none" href="">
+                                <class class="bi bi-pencil-square"></class>
+                            </a>
+                            <form class="d-inline" action="{% url 'delete' item.id %}" method="POST">
+                                {% csrf_token %}
+                                <button type="submit" id='{{item.id}}' class="text-danger text-decoration-none delete-btn"
+                                    ><i class="bi bi-trash"></i></button>
+                            </form>
+                        </td>
+                    </tr>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="raja{{item.id}}" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog blog-box">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title text-warning" id="exampleModalLabel">Update Post</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <form method="POST" action="{% url 'update' item.id %}">
+                                    {% csrf_token %}
+                                    <div class="modal-body update-modal" id='modal{{item.id}}'>
+
+                                        {{form.as_p}}
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-warning">Save changes</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content blog-box text-white">
+            <div class="modal-header">
+                <h5 class="modal-title text-warning" id="exampleModalLabel">New message</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body update-modal-body">
+                <form method="POST" action="{% url 'blogpost' %}">
+                    {% csrf_token %}
+                    {{form}}
+
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-outline-warning">Add New Post</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="raja" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+{% endblock content %}
+
+
+
+
+
+{% block js %}
+<script>
+
+    function edit(element) {
+        title = element.parentNode.parentNode.children[1].innerHTML
+        desc = element.parentNode.parentNode.children[2].innerHTML
+        console.log(title, desc)
+        formInput = document.getElementById(`modal${element.id}`)
+        formTitle = formInput.children[0].children[1]
+        formDesc = formInput.children[1].children[1]
+        formTitle.value = title
+        formDesc.value = desc
+
+
+    }
+
+
+</script>
+{% endblock js %}

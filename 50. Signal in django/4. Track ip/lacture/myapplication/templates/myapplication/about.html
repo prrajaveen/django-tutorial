@@ -1,0 +1,67 @@
+{% extends 'myapplication/base.html' %}
+{% block style %}
+<style>
+    .blog-box {
+        background-color: rgb(83, 81, 81);
+    }
+    .about{
+        font-family: sans-serif;
+    }
+
+    .about .circle {
+        height: 8rem;
+        width: 8rem;
+        border-radius: 50%;
+        box-sizing: border-box;
+
+    }
+
+    .about .circle i {
+        font-size: 4rem;
+    }
+</style>
+{% endblock style %}
+
+
+
+
+{% block content %}
+
+<div class="about text-light">
+    <h1 class="mt-5">About</h1>
+    <hr class="border border-warning border-3">
+    <div class="row mt-5">
+        <div class="col-sm-4 px-4 font-monospace card-1">
+            <div class="blog-box pt-4 px-4 shadow pb-4 rounded d-flex justify-content-center align-items-center flex-column">
+                <div class="circle blog-box shadow d-flex justify-content-center align-items-center">
+                    <i class="bi bi-person-circle text-warning"></i>
+                </div>
+                <h3 class="mt-2 text-warning">Roshan Jaishwal</h3>
+                <p class="lh-5 text-warning">Senior Web Developer</p>
+                <p class="text-center font-monospace">Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique, impedit neque esse nam consequatur nihil quaerat officia error hic voluptate, voluptatum magnam adipisci labore nisi eaque atque dolor. Facere, incidunt! <a href="" class="text-warning fw-bolder">Read more ...</a> </p>
+            </div>
+        </div>
+        <div class="col-sm-4 px-4 font-monospace  card-1">
+            <div class="blog-box pt-4 px-4 shadow pb-4 rounded d-flex justify-content-center align-items-center flex-column">
+                <div class="circle blog-box shadow d-flex justify-content-center align-items-center">
+                    <i class="bi bi-person-circle text-warning"></i>
+                </div>
+                <h3 class="text-warning mt-2">Praveen kumar</h3>
+                <p class="text-warning lh-5">Senior Softwere Developer</p>
+                <p class="text-center font-monospace ">Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis laborum, ducimus vitae numquam facere quisquam earum maiores accusamus provident quasi harum eum ullam! Aperiam id repellendus porro nostrum est dolore! <a href="" class='text-warning fw-bolder'> Read more ...</a> </p>
+            </div>
+        </div>
+        <div class="col-sm-4 px-4 font-monospace card-1">
+            <div class="blog-box shadow px-4 pt-4 pb-4 rounded d-flex justify-content-center align-items-center flex-column">
+                <div class="circle blog-box shadow d-flex justify-content-center align-items-center">
+                    <i class="bi bi-person-circle text-warning"></i>
+                </div>
+                <h3 class="text-warning mt-2">Nandan Kumar</h3>
+                <p class="text-warning fw-bolder lh-5">Machine Learnin Engineer</p>
+                <p class="text-center font-monospace ">Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis laborum, ducimus vitae numquam facere quisquam earum maiores accusamus provident quasi harum eum ullam! Aperiam id repellendus porro nostrum est dolore! <a class='text-warning fw-bolder'>read more...</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

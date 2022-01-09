@@ -1,0 +1,19 @@
+{% extends 'myapplication/base.html' %}
+
+
+{% block homenavcolor %}
+{{color}}
+{% endblock homenavcolor %}
+
+{% block content %}
+<h1>this is my home page</h1>
+<h1>i ma new {{d}}</h1>
+
+{% for i in '0123456789'  %}
+{% include 'myapplication/topcourse.html' with p='php' %}
+{% endfor %}
+
+<!-- only means one p data is pass it will not pass the view data to include template -->
+<!-- {% include 'myapplication/topcourse.html' with p='php' only %} -->
+
+{% endblock content %}

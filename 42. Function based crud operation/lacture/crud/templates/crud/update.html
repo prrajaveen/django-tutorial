@@ -1,0 +1,22 @@
+{% extends 'crud/base.html' %}
+{% block table %}
+{% include 'crud/table.html' %}
+{% endblock table %}
+
+{% block form %}
+<div class="alert alert-primary text-center">
+    <h5>Update Student</h5>
+</div>
+<form action="" method="POST">
+    {% csrf_token %}
+    {{form.as_p}}
+    <div class="d-flex justify-content-between">
+        <div class="start">
+            <a href='/' class="btn btn-outline-danger">Back to home</a>
+        </div>
+        <div class="text-end">
+            <button type="submit" class="btn btn-outline-danger">Update Student</button>
+        </div>
+    </div>
+</form>
+{% endblock form %}

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+</head>
+<body>
+   
+    <h1>Welcome {{name}}</h1>
+    <a href="{% url 'withoutoldpassword' %}" style="margin-right: 20px;">password change without old password</a>
+    <span>|</span>
+    <a href="{% url 'changepassword' %}" style="margin:0px 20px ;" >Change Password</a>
+    <small>
+        {% if messages %}
+        {% for message in messages %}
+        {{message}}
+        {% endfor%}
+        {% endif %}
+    </small> <a href="{% url 'logout' %}">logout</a>
+  
+    
+</body>
+</html>

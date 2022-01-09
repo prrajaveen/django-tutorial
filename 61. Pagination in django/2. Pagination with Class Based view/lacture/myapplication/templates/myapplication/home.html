@@ -1,0 +1,37 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Home Page</h1>
+    <hr>
+    {% for post in page_obj %}
+    <h2>{{post.title}}</h2>
+    <p>{{post.desc|truncatewords:30}}<a href="{% url 'detail' post.id %}">Read more</a></p>
+    <small>{{post.publish_date}}</small>
+    {% endfor %}
+    <hr>
+    <br>
+    <div>
+        {% if is_paginated %}
+        <span>
+            {% if page_obj.has_previous %}
+            <a href="?page={{ page_obj.previous_page_number }}">Previous</a>
+            {% endif %}
+
+            <span class="current">
+                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+            </span>
+            {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">next</a>
+            {% endif %}
+        </span>
+        {% endif %}
+    </div>
+</body>
+</html>

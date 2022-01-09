@@ -1,0 +1,66 @@
+{% extends 'myapplication/base.html' %}
+{% block title %}song{% endblock title %}
+{% block content %}
+<h1>All songs</h1>
+<hr>
+<table>
+    <thead>
+        <tr>
+            <th>Song Name</th>
+            <th>duration</th>
+            <th>Written by</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in data1 %}
+        <tr>
+            <td>{{item.song_name}}</td>
+            <td>{{item.song_duration}}</td>
+            <td>{{item.written_by}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<h1>Song filter by user 'username'</h1>
+<hr>
+<table>
+    <thead>
+        <tr>
+            <th>Song Name</th>
+            <th>duration</th>
+            <th>Written by</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in data2 %}
+        <tr>
+            <td>{{item.song_name}}</td>
+            <td>{{item.song_duration}}</td>
+            <td>{{item.written_by}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<h1>Song filter by duration</h1>
+<hr>
+<table>
+    <thead>
+        <tr>
+            <th>Song Name</th>
+            <th>duration</th>
+            <th>Written by</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in data3 %}
+        <tr>
+            <td>{{item.song_name}}</td>
+            <td>{{item.song_duration}}</td>
+            <td>{{item.written_by}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock content %}

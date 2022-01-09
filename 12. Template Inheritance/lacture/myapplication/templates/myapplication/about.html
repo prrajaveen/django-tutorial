@@ -1,0 +1,17 @@
+{% extends 'myapplication/index.html' %}
+
+
+
+{% load static %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'myapplication/css/about.css' %}">
+{% endblock css %}
+
+
+{% block mycontent %}
+<h1>hello this is boy</h1>
+{% endblock mycontent %}
+
+{% block color %}
+{{color}}
+{% endblock color %}

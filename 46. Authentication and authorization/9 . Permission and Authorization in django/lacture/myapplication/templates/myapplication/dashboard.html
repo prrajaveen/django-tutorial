@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>This is my dashboard</h1>
+
+    <h1>Welcome {{user.username}}</h1>
+
+    <!-- <input type="button" value="Add">
+    <br><br>
+    <input type="button" value="Change">
+    <br><br> -->
+    {% if perms.myapplication.add_blog %}
+    <input type="button" value="Add">
+    {% else %}
+    <h2>no Add permission</h2>
+    {% endif %}
+    <br><br>
+
+    {% if perms.myapplication.change_blog %}
+    <input type="button" value="change">
+    {% else %}
+    <h2>no Change permission</h2>
+    {% endif %}
+    <br><br>
+
+    {% if perms.myapplication.delete_blog %}
+    <input type="button" value="delete">
+    {% else %}
+    <h2>no Delete permission</h2>
+    {% endif %}
+    <br><br>
+
+    {% if perms.myapplication.view_blog %}
+    <input type="button" value="view">
+    {% else %}
+    <h2>no view permission</h2>
+    {% endif %}
+    <br><br>
+
+  
+
+
+    <!-- <input type="button" value="view">
+    <br><br> -->
+    <a href="{% url 'logout' %}">logout</a>
+</body>
+</html>

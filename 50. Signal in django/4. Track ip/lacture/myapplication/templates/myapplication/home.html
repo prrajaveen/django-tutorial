@@ -1,0 +1,30 @@
+{% extends 'myapplication/base.html' %}
+{% block raja %}
+<p class="text-white">raja</p>
+{% endblock raja %}
+
+{% block style %}
+<style>
+   .blog-box{
+       background-color: rgb(83,81,81);
+   }
+</style>
+{% endblock style %}
+
+
+
+{% block content %}
+
+<div class="col-sm-10">
+    <h1 class="text-white my-5">Home Page</h1>
+
+    <div class="h-100 p-5 text-white  rounded-3 blog-box shadow">
+        <h2 class="fw-bolder ws-1">This is blog Title</h2>
+        <p class=" font-monospace lh-5">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptas vel ipsum doloremque vero tempora laboriosam adipisci, repellendus, provident, repellat error sunt temporibus sint iusto incidunt illum exercitationem commodi! Suscipit, numquam.
+        Facilis magnam fuga nihil nisi maxime corporis eius inventore debitis ratione eveniet architecto distinctio, illum consectetur ullam minus nobis quisquam ea suscipit eum animi numquam dolorum vel laboriosam? Cupiditate, distinctio?
+        Reprehenderit labore, voluptas nulla perspiciatis voluptatibus praesentium? Enim commodi non accusamus? Similique, perspiciatis alias ipsum amet ullam ea doloribus beatae, repudiandae vel nobis, voluptatum omnis commodi. Saepe itaque neque autem.</p>  
+      </div>
+</div>
+
+
+{% endblock content %}

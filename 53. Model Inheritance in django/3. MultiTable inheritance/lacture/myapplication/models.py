@@ -1,0 +1,14 @@
+from django.db import models
+
+
+# Create your models here.
+class ExamCenter(models.Model):
+    cname=models.CharField(max_length=70)
+    city=models.CharField(max_length=90)
+
+def student_obj(request):
+    cname=ExamCenter.objects.filter('cname')
+
+class Student(ExamCenter):
+    name=models.CharField(max_length=70)
+    roll=models.IntegerField()

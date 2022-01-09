@@ -1,0 +1,53 @@
+{% extends 'myapplication/base.html' %}
+{% block style %}
+<style>
+   .blog-box{
+       background-color: rgb(83,81,81);
+   }
+   label{
+       color: white;
+       font-size: 1rem;
+       font-weight: bolder;
+       margin-bottom: 10px;
+   }
+</style>
+{% endblock style %}
+
+
+{% block content %}
+<div class="col-sm-10 blog-box shadow mt-5 px-5 py-1 pb-3 position-relative">
+    <div class="position-absolute top-0 end-0">
+        {% if form.non_field_errors %}
+        {% for error in form.non_field_errors %}
+        <div class="d-flex justify-content-end w-100">
+        <div class="alert alert-danger alert-dismissible fade show w-100" role="alert">
+            <strong>{{Error}}</strong> {{error}}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        </div>
+        {% endfor %}
+        {% endif %}
+    </div>
+    <h1 class="my-5 text-warning">Login Page</h1> 
+    <form action="" method="POST">
+        {% csrf_token %}
+        <div class="row px-5 pb-5">
+            <div class="col-sm-12">
+                <div>
+                    {{form.username.label_tag}}
+                    {{form.username}}
+                </div>
+            </div><div class="col-sm-12">
+                <div class="my-5">
+                    {{form.password.label_tag}}
+                    {{form.password}}
+                </div>
+            </div>
+            <div class="col-sm-12 text-end">
+                <button class="btn btn-outline-warning fw-bolder">Log in</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+{% endblock content %}

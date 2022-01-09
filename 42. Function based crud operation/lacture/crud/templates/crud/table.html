@@ -1,0 +1,33 @@
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Password</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for stu in student %}
+        <tr>
+            <th scope="row">{{forloop.counter}}</th>
+            <td>{{stu.name}}</td>
+            <td>{{stu.email}}</td>
+            <td>{{stu.password}}</td>
+            <td>
+                <div class="d-flex">
+                <form action="{% url 'update' stu.id %}" method="GET">
+                    <button type="submit" class="btn btn-outline-success btn-sm me-2">Modify</button>
+                </form>
+                <form action="{% url 'delete' stu.id %}" method="POST">
+                    {% csrf_token %}
+                   <button type="submit" class="btn btn-sm btn-outline-danger" href=""> Delete</button>
+                </form>
+            </div>
+
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>

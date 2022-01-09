@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Information</title>
+    <style>
+        tr,td,th,table{
+            border:1px solid black ;
+        }
+    </style>
+</head>
+<body>
+    <br>
+    <hr>
+    <h1>Teacher information</h1>
+    <hr>
+    <table>
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>name</th>
+                <th>age</th>
+                <th>date</th>
+                <th>salary</th>
+            </tr>
+            
+        </thead>
+        <tbody>
+            {% for item in teachers %}
+            <tr>
+                <td>{{forloop.counter}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.age}}</td>
+                <td>{{item.date}}</td>
+                <td>{{item.salary}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+
+
+    <br>
+    <hr>
+    <h1>Students information</h1>
+    <hr>
+    <table>
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>name</th>
+                <th>age</th>
+                <th>fees</th>
+            </tr>
+            
+        </thead>
+        <tbody>
+            {% for item in students %}
+            <tr>
+                <td>{{forloop.counter}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.age}}</td>
+                <td>{{item.fees}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+
+    <br>
+    <hr>
+    <h1>Contractors information</h1>
+    <hr>
+    <table>
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>name</th>
+                <th>age</th>
+                <th>date</th>
+                <th>payment</th>
+            </tr>
+            
+        </thead>
+        <tbody>
+            {% for item in contracors %}
+            <tr>
+                <td>{{forloop.counter}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.age}}</td>
+                <td>{{item.date}}</td>
+                <td>{{item.payment}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</body>
+</html>

@@ -1,0 +1,77 @@
+{% extends 'myapplication/base.html' %}
+{% block style %}
+<style>
+    .blog-box {
+        background-color: rgb(83, 81, 81);
+    }
+
+    label {
+        color: white;
+        font-size: 1rem;
+        font-weight: bolder;
+    }
+
+    .errorlist {
+        color: rgb(236, 89, 89);
+        text-align: end;
+        list-style: none;
+        font-weight: bolder;
+    }
+    
+</style>
+{% endblock style %}
+
+
+{% block content %}
+<div class="col-sm-10 blog-box rounded shadow px-4 py-4 mt-5">
+    <h1 class="text-warning text-center shadow py-3">Singup Form</h1>
+    <form method='POST' novalidate>
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-sm-6">
+                {{form.first_name.label_tag}}
+                {{form.first_name}}
+                {{form.first_name.errors}}
+            </div>
+            <div class="col-sm-6">
+                {{form.last_name.label_tag}}
+                {{form.last_name}}
+                {{form.last_name.errors}}
+            </div>
+            <div class="col-sm-12">
+                {{form.username.label_tag}}
+                {{form.username}}
+                {{form.username.errors}}
+            </div>
+            <div class="col-sm-12">
+                {{form.email.label_tag}}
+                {{form.email}}
+                {{form.email.errors}}
+            </div>
+            <div class="col-sm-6">
+                {{form.password1.label_tag}}
+                {{form.password1}}
+                {{form.password1.errors}}
+            </div>
+            <div class="col-sm-6">
+                {{form.password2.label_tag}}
+                {{form.password2}}
+                {{form.password2.errors}}
+            </div>
+            <div class="col-md-9 mt-3">
+                <div class="login ">
+                    <p class="text-white"><span class="text-warning fs-5" >Already </span>have a Account ?</p>
+                    <a class="link-light" href="{% url 'login' %}">Click here to Login</a>
+                </div>
+            </div>
+            <div class="col-md-3 text-end mt-3">
+                <button class="btn btn-outline-warning">Create an Account</button>
+            </div>
+            <div class="col-md-12">
+                
+            </div>
+        </div>
+    </form>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,10 @@
+{% extends 'myapplication/about.html' %}
+
+{% load static %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'myapplication/css/contact.css' %}">
+{% endblock css %}
+
+{% block color %}
+{{color}}
+{% endblock color %}
